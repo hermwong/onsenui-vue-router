@@ -1,6 +1,6 @@
 <template id="settings">
   <v-ons-page>
-    <custom-toolbar title="Settings" :action="toggleMenu"></custom-toolbar>
+    <custom-toolbar title="Settings" :action="toggleMenu" :openSide="openSide" v-on:toggleMenu="sideMenu"></custom-toolbar>
     <p style="text-align: center">
       Change the settings.
     </p>
@@ -12,9 +12,14 @@ import CustomToolbar from './CustomToolbar'
 
 export default {
   name: 'Settings',
-  props: ['toggleMenu'],
+  props: ['toggleMenu', 'openSide'],
   components: {
     'custom-toolbar': CustomToolbar
+  },
+  methods: {
+    sideMenu(isOpen) {
+      this.$emit('toggleMenu', [isOpen]);
+    }
   }
 }
 </script>

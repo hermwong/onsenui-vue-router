@@ -1,6 +1,6 @@
 <template>
   <v-ons-splitter>
-    <v-ons-splitter-side swipeable width="150px" collapse"" side="left" :open.sync="openSide" @click="doSomething">
+    <v-ons-splitter-side swipeable width="150px" collapse"" side="left" :open.sync="openSide">
       <v-ons-page>
         <v-ons-list>
           <v-ons-list-item v-for="page in pages" tappable modifier="chevron" @click="currentPage = page; openSide = false">
@@ -10,14 +10,13 @@
       </v-ons-page>
     </v-ons-splitter-side>
     <v-ons-splitter-content>
-      <component :is="currentPage" :toggle-menu="() => openSide = !openSide"></component>
+      <component :is="currentPage" :openSide="openSide" v-on:toggleMenu="sideMenu"></component>
     </v-ons-splitter-content>
   </v-ons-splitter>
 </template>
 
 <script>
 import Home from './Home'
-import Toolbar from './CustomToolbar'
 import News from './News'
 import Settings from './Settings'
 
@@ -26,7 +25,6 @@ export default {
   props: ['title', 'action'],
   components: {
     home: Home,
-    'custom-toolbar': Toolbar,
     news: News,
     settings: Settings
   },
@@ -38,8 +36,10 @@ export default {
     }
   },
   methods: {
-    doSomething() {
-      console.log(openSide);
+    sideMenu(isOpen) {
+      console.log('toggleMenu handled');
+      this.openSide = isOpen;
+      console.log('openSide: ' + this.openSide);
     }
   }
 }

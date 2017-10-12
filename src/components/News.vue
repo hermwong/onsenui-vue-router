@@ -1,6 +1,6 @@
 <template id="news">
   <v-ons-page>
-    <custom-toolbar title="News" :action="toggleMenu"></custom-toolbar>
+    <custom-toolbar title="News" :action="toggleMenu" :openSide="openSide" v-on:toggleMenu="sideMenu"></custom-toolbar>
     <p style="text-align: center">
       Some news here.
     </p>
@@ -12,9 +12,14 @@ import CustomToolbar from './CustomToolbar'
 
 export default {
   name: 'News',
-  props: ['toggleMenu'],
+  props: ['toggleMenu', 'openSide'],
   components: {
     'custom-toolbar': CustomToolbar
+  },
+  methods: {
+    sideMenu(isOpen) {
+      this.$emit('toggleMenu', [isOpen]);
+    }
   }
 }
 </script>
