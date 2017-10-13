@@ -10,7 +10,7 @@
       </v-ons-page>
     </v-ons-splitter-side>
     <v-ons-splitter-content>
-      <component :is="currentPage" :openSide="openSide" v-on:toggleMenu="sideMenu"></component>
+      <component :is="currentPage" :openSide="openSide" v-on:menuToggled="sideMenu"></component>
     </v-ons-splitter-content>
   </v-ons-splitter>
 </template>

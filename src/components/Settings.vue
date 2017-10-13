@@ -1,6 +1,6 @@
 <template id="settings">
   <v-ons-page>
-    <custom-toolbar title="Settings" :action="toggleMenu" :openSide="openSide" v-on:toggleMenu="sideMenu"></custom-toolbar>
+    <custom-toolbar title="Settings" :openSide="openSide" v-on:menuToggled="sideMenu"></custom-toolbar>
     <p style="text-align: center">
       Change the settings.
     </p>
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     sideMenu(isOpen) {
-      this.$emit('toggleMenu', [isOpen]);
+      this.$emit('menuToggled', [isOpen]);
     }
   }
 }

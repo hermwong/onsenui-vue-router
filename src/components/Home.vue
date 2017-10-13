@@ -1,6 +1,6 @@
 <template id="home">
   <v-ons-page>
-    <custom-toolbar title="Home" :action="toggleMenu" :openSide="openSide" v-on:toggleMenu="sideMenu"></custom-toolbar>
+    <custom-toolbar title="Home" :openSide="openSide" v-on:menuToggled="sideMenu"></custom-toolbar>
     <p style="text-align: center">
       Welcome home.
     </p>
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     sideMenu(isOpen) {
-      this.$emit('toggleMenu', [isOpen]);
+      this.$emit('menuToggled', [isOpen]);
     }
   }
 }
